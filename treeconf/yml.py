@@ -37,3 +37,14 @@ class YAMLConfig(Config):
                 with open(path) as f:
                     data = yaml.load(f)
                     self._data.update(data)
+
+    def write(self, path=None):
+        if path is None:
+            path = self._path
+        if path is None:
+            path = self._paths[0]
+        if path is None:
+            raise ValueError('No path passed to write, and no paths already '
+                'passed on initialization or YAMLConfig.open')
+        with open(path, 'w') as f:
+            f.write(yaml.dump(self._data, default_flow_style=False))

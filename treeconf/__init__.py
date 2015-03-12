@@ -7,6 +7,7 @@ Bring in Configs into namespace
 from treeconf.conf import Config as BaseConfig
 from treeconf.yml import YAMLConfig
 YMLConfig = YAMLConfig
+YamlConfig = YAMLConfig
 
 from treeconf.util import normalize, validate_ext
 
