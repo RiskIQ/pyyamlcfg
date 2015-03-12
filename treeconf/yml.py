@@ -19,12 +19,22 @@ class YAMLConfig(Config):
 
     def open(self, path=None, paths=None):
         super(YAMLConfig, self).open(path=path, paths=paths)
+        if self._paths is not None:
+            self.parse_paths(self._paths)
         if self._path is not None:
-            with open(self._path) as f:
-                self._data = yaml.load(f)
-        elif self._paths is not None:
-            for _path in self._paths[::-1]:
-                if os.path.exists(_path):
-                    with open(_path) as f:
-                        data = yaml.load(path)
-                        self._data.update(data)
+            self.parse_path(self._path)
+        if paths is not None:
+            self.parse_paths(paths)
+        if path is not None:
+            self.parse_path(path)
+
+    def parse_path(self, path):
+        with open(path) as f:
+            self._data.update(yaml.load(f))
+
+    def parse_paths(self, paths):
+        for path in paths[::-1]:
+            if os.path.exists(path):
+                with open(path) as f:
+                    data = yaml.load(path)
+                    self._data.update(data)

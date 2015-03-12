@@ -4,18 +4,20 @@
 Base config
 '''
 
+import os
 from treeconf import env
 
 class Config(object):
 
     def __init__(self, path=None):
-        self._path = path
+        self._path = os.path.expanduser(path)
+        self._data = {}
 
     def open(self, path=None, paths=None):
         if path is not None:
-            self._path = path
+            self._path = os.path.expanduser(path)
         if paths is not None:
-            self._paths = paths
+            self._paths = [os.path.expanduser(x) for x in paths]
 
     def __getattr__(self, attr):
         return self[attr]
