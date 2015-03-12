@@ -35,3 +35,9 @@ class Config(object):
             return check_env
         if index in self._data:
             return self._data[index]
+
+    def __setattr__(self, attr, value):
+        if attr in ('_data', '_path', '_paths'):
+            super(Config, self).__setattr__(attr, value)
+        else:
+            self._data[attr] = value
