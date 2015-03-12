@@ -9,13 +9,13 @@ def read(fname):
 
 setup(
     name = "yamlcfg",
-    version = "0.3.1",
+    version = "0.3.2",
     description = "Hierarchical configuration parser",
     author = "Johan Nestaas",
     author_email = "johan@riskiq.net",
     license = "BSDv2",
     keywords = "config, configuration, cfg, yaml, yml",
-    #url = "https://www.github.com/RiskIQ/yamlcfg
+    url = "https://github.com/RiskIQ/pyyamlcfg",
     packages=['yamlcfg'],
     package_dir={'yamlcfg': 'yamlcfg'},
     long_description=read('README.md'),
