@@ -38,6 +38,7 @@ setup(
         'Programming Language :: Python',
     ],
     install_requires=[
+        'pyyaml',
     ],
     entry_points = {
         'console_scripts': [

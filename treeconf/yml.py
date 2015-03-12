@@ -4,6 +4,7 @@
 Parse YAML configs
 '''
 
+import os
 import yaml
 
 from treeconf.conf import Config
@@ -16,13 +17,11 @@ class YAMLConfig(Config):
     
     def __init__(self, *args, **kwargs):
         super(YAMLConfig, self).__init__(*args, **kwargs)
+        if self._path or self._paths:
+            self.open(path=self._path, paths=self._paths)
 
     def open(self, path=None, paths=None):
         super(YAMLConfig, self).open(path=path, paths=paths)
-        if self._paths is not None:
-            self.parse_paths(self._paths)
-        if self._path is not None:
-            self.parse_path(self._path)
         if paths is not None:
             self.parse_paths(paths)
         if path is not None:
@@ -36,5 +35,5 @@ class YAMLConfig(Config):
         for path in paths[::-1]:
             if os.path.exists(path):
                 with open(path) as f:
-                    data = yaml.load(path)
+                    data = yaml.load(f)
                     self._data.update(data)
