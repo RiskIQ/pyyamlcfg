@@ -2,7 +2,7 @@ import os
 from setuptools import setup
 
 # yamlcfg
-# Hierarchical configuration parser
+# Hierarchical YAML configuration utility for Python
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
@@ -10,7 +10,7 @@ def read(fname):
 setup(
     name = "yamlcfg",
     version = "0.3.2",
-    description = "Hierarchical configuration parser",
+    description = "Hierarchical YAML configuration utility for Python",
     author = "Johan Nestaas",
     author_email = "johan@riskiq.net",
     license = "BSDv2",
