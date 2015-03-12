@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-''' treeconf.yml
+''' yamlcfg.yml
 
 Parse YAML configs
 '''
@@ -7,8 +7,8 @@ Parse YAML configs
 import os
 import yaml
 
-from treeconf.conf import Config
-from treeconf.util import validate_ext
+from yamlcfg.conf import Config
+from yamlcfg.util import validate_ext
 
 def is_yaml(path):
     return validate_ext(path, ('yaml', 'yml'))

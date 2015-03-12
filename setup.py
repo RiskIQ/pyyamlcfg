@@ -1,23 +1,23 @@
 import os
 from setuptools import setup
 
-# treeconf
+# yamlcfg
 # Hierarchical configuration parser
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = "treeconf",
+    name = "yamlcfg",
     version = "0.2.0",
     description = "Hierarchical configuration parser",
     author = "Johan Nestaas",
     author_email = "johan@riskiq.net",
     license = "BSDv2",
     keywords = "config, configuration, cfg, yaml, yml",
-    #url = "https://www.github.com/RiskIQ/treeconf
-    packages=['treeconf'],
-    package_dir={'treeconf': 'treeconf'},
+    #url = "https://www.github.com/RiskIQ/yamlcfg
+    packages=['yamlcfg'],
+    package_dir={'yamlcfg': 'yamlcfg'},
     long_description=read('README.md'),
     classifiers=[
         #'Development Status :: 1 - Planning',
@@ -42,11 +42,11 @@ setup(
     ],
     entry_points = {
         'console_scripts': [
-            'treeconf = treeconf.bin:treeconf',
+            'yamlcfg = yamlcfg.bin:yamlcfg',
         ],
     },
     #package_data = {
-        #'treeconf': ['catalog/*.edb'],
+        #'yamlcfg': ['catalog/*.edb'],
     #},
     #include_package_data = True,
 )

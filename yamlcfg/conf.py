@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-''' treeconf.conf
+''' yamlcfg.conf
 
 Base config
 '''
 
 import os
-from treeconf import env
+from yamlcfg import env
 
 class Config(object):
 

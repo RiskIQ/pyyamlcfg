@@ -1,2 +1,2 @@
 include LICENSE README.md 
-recursive-include treeconf *.py
+recursive-include yamlcfg *.py

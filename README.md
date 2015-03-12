@@ -1,4 +1,4 @@
-treeconf
-========
+yamlcfg
+=======
 
 Hierarchical configuration parser
