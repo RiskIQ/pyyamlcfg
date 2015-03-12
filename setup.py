@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
     name = "yamlcfg",
-    version = "0.2.0",
+    version = "0.3.0",
     description = "Hierarchical configuration parser",
     author = "Johan Nestaas",
     author_email = "johan@riskiq.net",
