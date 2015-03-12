@@ -1,0 +1,4 @@
+treeconf
+========
+
+Hierarchical configuration parser
