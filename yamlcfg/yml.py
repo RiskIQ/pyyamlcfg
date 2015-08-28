@@ -22,14 +22,36 @@ class YAMLConfig(Config):
         :param path: loads config at path (default behavior)
         :param paths: specify paths to load in succession, if they exist,
             from most authoritative to least.
+        :param name: Generate all default paths from a name
+            eg. name='foo', then paths would be:
+            ('./.foo{,.yml,.yaml}', '~/.foo{,.yml,.yaml}',
+            '~/.config/foo/config{,.yml,.yaml}',
+            '/etc/foo/config{,.yml,.yaml}')
+        :param config_name: replace "config" in above paths with `config_name`
         :param permute: If True, permutes paths to other possible lower-case
             extensions. eg: `foo.yml` would create a check for `foo.yaml` as
             well, and `foo` would check `foo`, `foo.yml` and `foo.yaml`
         :return: None
         '''
         super(YAMLConfig, self).__init__(*args, **kwargs)
+        if kwargs.get('name'):
+            self._paths = self.paths_from_name(
+                kwargs['name'],
+                config_name=kwargs.get('config_name', 'config')
+            )
+            kwargs['permute'] = True
         if self._path or self._paths:
             self.open(path=self._path, paths=self._paths, **kwargs)
+
+    def paths_from_name(self, name, config_name='config'):
+        return [
+            x.format(name=name, config=config_name)
+            for x in
+            (
+                './.{name}', '~/.{name}', '~/.config/{name}/{config}', 
+                '/etc/{name}/{config}',
+            )
+        ]
 
     def open(self, path=None, paths=None, permute=False, **kwargs):
         super(YAMLConfig, self).open(path=path, paths=paths)
