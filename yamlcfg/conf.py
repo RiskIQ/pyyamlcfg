@@ -9,7 +9,7 @@ from yamlcfg import env
 
 class Config(object):
 
-    def __init__(self, path=None, paths=None):
+    def __init__(self, path=None, paths=None, **kwargs):
         if path is None:
             self._path = None
         else:
