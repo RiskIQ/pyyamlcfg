@@ -41,7 +41,9 @@ class YAMLConfig(Config):
             )
             kwargs['permute'] = True
         if self._path or self._paths:
-            self.open(path=self._path, paths=self._paths, **kwargs)
+            kwargs['path'] = self._path
+            kwargs['paths'] = self._paths
+            self.open(**kwargs)
 
     def paths_from_name(self, name, config_name='config'):
         return [
