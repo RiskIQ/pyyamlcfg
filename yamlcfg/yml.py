@@ -83,7 +83,8 @@ class YAMLConfig(Config):
                 sub_paths = self.permuted_paths(path)
             else:
                 sub_paths = [path]
-            for sub in sub_paths:
+            for sub0 in sub_paths:
+                sub = os.path.expanduser(sub0)
                 if os.path.exists(sub):
                     with open(sub) as f:
                         data = yaml.load(f)
