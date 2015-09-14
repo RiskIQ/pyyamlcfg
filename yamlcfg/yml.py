@@ -90,6 +90,12 @@ class YAMLConfig(Config):
                         data = yaml.load(f)
                         self._data.update(data)
 
+    def _make_filedir(self, path):
+        path_dir = os.path.abspath(os.path.expanduser(os.path.dirname(path)))
+        if not os.path.exists(path_dir):
+            os.makedirs(path_dir)
+            return path_dir
+
     def write(self, path=None):
         '''
         Dumps the configuration to a path.
@@ -104,6 +110,7 @@ class YAMLConfig(Config):
         if path is None:
             raise ValueError('No path passed to write, and no paths already '
                 'passed on initialization or YAMLConfig.open')
+        self._make_filedir(path)
         with open(path, 'w') as f:
             f.write(yaml.dump(self._data, default_flow_style=False))
         return os.path.abspath(path)
