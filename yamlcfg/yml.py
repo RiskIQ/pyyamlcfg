@@ -91,10 +91,17 @@ class YAMLConfig(Config):
                         self._data.update(data)
 
     def _make_filedir(self, path):
+        ''' 
+        Make the containing directory if it doesn not exist already
+        :param path: Path to file
+        :return: absolute path to file
+        '''
         path_dir = os.path.abspath(os.path.expanduser(os.path.dirname(path)))
+        fname = os.path.basename(path)
         if not os.path.exists(path_dir):
             os.makedirs(path_dir)
-            return path_dir
+        # Return the absolute path, fixed for ~ etc
+        return os.path.join(path_dir, fname)
 
     def write(self, path=None):
         '''
@@ -110,7 +117,7 @@ class YAMLConfig(Config):
         if path is None:
             raise ValueError('No path passed to write, and no paths already '
                 'passed on initialization or YAMLConfig.open')
-        self._make_filedir(path)
+        path = self._make_filedir(path)
         with open(path, 'w') as f:
             f.write(yaml.dump(self._data, default_flow_style=False))
-        return os.path.abspath(path)
+        return path
